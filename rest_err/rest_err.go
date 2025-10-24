@@ -3,15 +3,15 @@ package rest_err
 import "net/http"
 
 type RestErr struct {
-	Message string   `json:"message"`
-	Err     string   `json:"error"`
-	Code    int      `json:"code"`
-	Causes  []Causes `json:"causes"`
+	Message string   `json:"message" example:"invalid request parameters"` // Human readable message
+	Err     string   `json:"error" example:"bad request"`
+	Code    int      `json:"code" example:"400"`                                                             // HTTP status code
+	Causes  []Causes `json:"causes" example:"[{\"field\":\"email\",\"message\":\"invalid email address\"}]"` // Detailed error causes, most common for json field validation errors
 }
 
 type Causes struct {
-	Field   string `json:"field"`
-	Message string `json:"message"`
+	Field   string `json:"field" example:"email"`                   // Field or parameter that caused the error
+	Message string `json:"message" example:"invalid email address"` // Description of the cause
 }
 
 func (r *RestErr) Error() string {
