@@ -5,8 +5,8 @@ import "net/http"
 type RestErr struct {
 	Message string   `json:"message" example:"invalid request parameters"` // Human readable message
 	Err     string   `json:"error" example:"bad request"`
-	Code    int      `json:"code" example:"400"`                                                             // HTTP status code
-	Causes  []Causes `json:"causes" example:"[{\"field\":\"email\",\"message\":\"invalid email address\"}]"` // Detailed error causes, most common for json field validation errors
+	Code    int      `json:"code" example:"400"` // HTTP status code
+	Causes  []Causes `json:"causes"`             // Detailed error causes, most common for json field validation errors
 }
 
 type Causes struct {
